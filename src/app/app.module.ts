@@ -5,21 +5,24 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CurrentDateComponent } from './current-date/current-date.component';
-import { FutureService } from './service/future.service';
+import { AppRoutingModule } from './app-routing.module';
+import { ForecastComponent } from './forecast/forecast.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrentDateComponent,    
+    CurrentDateComponent,
+    ForecastComponent,    
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [FutureService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
