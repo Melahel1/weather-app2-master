@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
@@ -7,31 +7,43 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class ApiWeatherService {
 
-  apiUrl = 'http://localhost/weatherapi/api'
+  apiUrl = 'http://localhost/weatherapi/api';
 
   constructor(private http: HttpClient) { }
 
   getweather(city: string): Observable<any> {
-    const url = `${this.apiUrl}/getweather/${encodeURIComponent(city)}`;
-    return this.http.get(url).pipe(
-      catchError(this.handleError)
-    );
+    const url = `${this.apiUrl}/getweather`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    const body = new HttpParams().set('city', city);
+
+    return this.http.post(url, body, { headers });
   }
 
   get5DayForecast(city: string): Observable<any> {
-    const url = `${this.apiUrl}/fivedaysweather/${encodeURIComponent(city)}`;
-    return this.http.get(url).pipe(
-      catchError(this.handleError)
-    );
+    const url = `${this.apiUrl}/fivedaysweather`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    const body = new HttpParams().set('city', city);
+
+    return this.http.post(url, body, { headers });
   }
 
 
   getWeatherByCoordinates(lat: number, lon: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/getweatherbycoordinates?lat=${lat}&lon=${lon}`);
+    const url = `${this.apiUrl}/getweatherbycoordinates`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    let body = new HttpParams().set('lat', lat)
+                               .set('lon', lon);
+
+    return this.http.post(url, body, { headers });
   }
 
   get5DayForecastByCoordinates(lat: number, lon: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/fivedaysweatherbycoordinates?lat=${lat}&lon=${lon}`);
+    const url = `${this.apiUrl}/fivedaysweatherbycoordinates`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    let body = new HttpParams().set('lat', lat)
+                               .set('lon', lon);
+             
+    return this.http.post(url, body, { headers });
   }
 
 
