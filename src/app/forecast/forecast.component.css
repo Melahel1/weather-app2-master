@@ -101,8 +101,8 @@ body {
   
   .section-2 {
     font-family: 'poppins', sans-serif;
-    background: linear-gradient(to bottom, #ffffff, #f0f2f5);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+  
     color: #333;
     display: flex;
     flex-direction: column;
@@ -115,9 +115,12 @@ body {
   }
   
   .picture-container {
-    width: 30%;
+    width: 100%;
     height: auto;
     overflow: hidden;
+
+   
+    
   }
   
   .section-image2 {
